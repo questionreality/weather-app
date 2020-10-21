@@ -1,11 +1,13 @@
 const express = require("express");
 const path = require("path");
 const process = require("process");
+const cors = require("cors");
 const hbs = require("hbs");
 const geoCode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 console.log(path.join(__dirname, "../public"));
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3000;
 require("dotenv").config();
 //Define paths for express config
@@ -81,5 +83,3 @@ app.listen(port, () => {
 //the process of starting a server is async
 //req.query
 //HTTP request has a single request that goes to the server and a single response that comes back
-
-
