@@ -83,3 +83,5 @@ app.listen(port, () => {
 //the process of starting a server is async
 //req.query
 //HTTP request has a single request that goes to the server and a single response that comes back
+
+//to make the API_KEYS private - I needed to add a config vars to heroku and use dotenv in my app.js
