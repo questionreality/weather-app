@@ -1,5 +1,5 @@
 body {
-  color: #333333;
+  color: #c8c3bc;
   font-family: arial;
   max-width: 650px;
   margin: 0 auto;
@@ -7,13 +7,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #181a1b;
 }
 .main-content {
   flex-grow: 1;
 }
 footer {
-  color: #888888;
-  border-top: 1px solid #eeeeee;
+  color: #9d9488;
+  border-top: 1px solid #35393b;
   margin-top: 16px;
   padding: 16px 0;
 }
@@ -27,27 +28,27 @@ h1 {
   margin-bottom: 16px;
 }
 header a {
-  color: #888;
+  color: #9d9488;
   margin-right: 16px;
   text-decoration: none;
 }
 header a:hover {
-  color: #333333;
+  color: #c8c3bc;
 }
 .profile-image {
   width: 30%;
 }
 input {
-  border: 1px solid #ccc;
+  border: 1px solid #3e4446;
   padding: 8px;
   border-radius: 10px;
   outline: none;
 }
 button {
   cursor: pointer;
-  border: 1px solid #888;
-  background: #888;
-  color: white;
+  border: 1px solid #52585c;
+  background: #5b6367;
+  color: #e8e6e3;
   padding: 8px;
   border-radius: 10px;
   outline: none;
