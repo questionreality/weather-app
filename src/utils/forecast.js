@@ -9,8 +9,10 @@ const forecast = (longitude, latitude, callback) => {
     } else {
       callback(
         undefined,
-        `${body.current.weather_descriptions[0]}. It is currently ${body.current.temperature} C. There is a ${body.current.precip}% chance of rain`
+        `${body.current.weather_descriptions[0]}. It is currently ${body.current.temperature} C. There is a ${body.current.precip}% chance of rain`,
+        body.current.weather_icons[0]
       );
+      console.log(body);
     }
   });
 };

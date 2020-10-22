@@ -7,6 +7,8 @@ weatherForm.addEventListener("submit", (e) => {
   const location = search.value;
   messageOne.textContent = "Loading...";
   messageTwo.textContent = "";
+  document.querySelector(".weather-image").src = "";
+
   fetch(`/weather?address=${location}`).then((response) => {
     response.json().then((data) => {
       if (data.error) {
@@ -14,6 +16,7 @@ weatherForm.addEventListener("submit", (e) => {
       }
       messageOne.textContent = data.address;
       messageTwo.textContent = data.forecast;
+      document.querySelector(".weather-image").src = data.icon;
     });
   });
 });
