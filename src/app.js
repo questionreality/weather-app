@@ -5,6 +5,7 @@ const cors = require("cors");
 const hbs = require("hbs");
 const geoCode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
+const reverseGeocode = require("./utils/reverseGeocode");
 console.log(path.join(__dirname, "../public"));
 const app = express();
 app.use(cors());
@@ -32,11 +33,34 @@ app.get("/about", (req, res) => {
     name: "Vivek Varma",
   });
 });
-app.get("/help", (req, res) => {
-  res.render("help", {
-    message: "Hello there",
-    title: "Help",
-    name: "Vivek Varma",
+app.get("/location", (req, res) => {
+  console.log("here");
+  if (!req.query.lat || !req.query.lng) {
+    return res.status(400).send("something went wrong");
+  }
+  reverseGeocode(req.query.lat, req.query.lng, (error, address) => {
+    if (error) {
+      return res.send({ error });
+    } else {
+      geoCode(address.city, (error, { latitude, longitude, location } = {}) => {
+        if (location) {
+          // console.log(data);
+          return forecast(longitude, latitude, (error, forecastData, icon) => {
+            if (forecastData) {
+              //     street: body.locations[0].street,
+
+              return res.send({
+                address: location,
+                forecast: forecastData,
+                icon: icon,
+              });
+            }
+            return res.send({ error });
+          });
+        }
+        return res.send({ error });
+      });
+    }
   });
 });
 app.get("/weather", (req, res) => {
@@ -78,6 +102,7 @@ app.get("*", (req, res) => {
     message: "Please try some other url",
   });
 });
+
 app.listen(port, () => {
   console.log("Server is up on port 3000");
 });
