@@ -38,31 +38,34 @@ app.get("/location", (req, res) => {
   if (!req.query.lat || !req.query.lng) {
     return res.status(400).send("something went wrong");
   }
-  reverseGeocode(req.query.lat, req.query.lng, (error, address) => {
-    if (error) {
-      return res.send({ error });
-    } else {
-      geoCode(address.city, (error, { latitude, longitude, location } = {}) => {
-        if (location) {
-          // console.log(data);
-          return forecast(longitude, latitude, (error, forecastData, icon) => {
-            if (forecastData) {
-              //     street: body.locations[0].street,
+  const longitude = req.query.lng;
+  const latitude = req.query.lat;
+  // reverseGeocode(req.query.lat, req.query.lng, (error, address) => {
+  //   if (error) {
+  //     return res.send({ error });
+  //   } else {
+  //     console.log(address);
+  //     geoCode(address, (error, { latitude, longitude, location } = {}) => {
+  //       if (location) {
+  //         // console.log(data);
+  return forecast(longitude, latitude, (error, forecastData, icon) => {
+    if (forecastData) {
+      //     street: body.locations[0].street,
 
-              return res.send({
-                address: location,
-                forecast: forecastData,
-                icon: icon,
-              });
-            }
-            return res.send({ error });
-          });
-        }
-        return res.send({ error });
+      return res.send({
+        // address: location,
+        forecast: forecastData,
+        icon: icon,
       });
     }
+    return res.send({ error });
   });
+  //     }
+  //     return res.send({ error });
+  //   });
+  // }
 });
+
 app.get("/weather", (req, res) => {
   if (!req.query.address) {
     return res.send({

@@ -34,7 +34,7 @@ locationButton.addEventListener("click", async (e) => {
     // console.log(position);
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
-    // console.log(lat, lng);
+    console.log(lat, lng);
     fetch(`/location?lat=${lat}&lng=${lng}`)
       .then((response) => response.json())
       .then((data) => {

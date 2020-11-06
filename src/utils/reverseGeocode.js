@@ -6,9 +6,7 @@ const reverseGeocode = (lat, lng, cb) => {
       cb("Unable to connect to location services", undefined);
     } else {
       console.log(res.body);
-      cb(undefined, {
-        city: res.body.address.city,
-      });
+      cb(undefined, res.body.address.city);
     }
   });
 };
